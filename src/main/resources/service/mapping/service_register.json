@@ -1,0 +1,17 @@
+{
+  "services": [{
+    "code": "100001",
+    "action": "login.do",
+    "main": "com.iweb.service.action.achieve.Core100001Impl",
+    "in": "com.iweb.service.type.in.Core100001In",
+    "out": "com.iweb.service.type.out.Core100001Out"
+  },
+    {
+      "code": "100002",
+      "action": "register.do",
+      "main": "com.iweb.service.action.achieve.Core100002Impl",
+      "in": "com.iweb.service.type.in.Core100002In",
+      "out": "com.iweb.service.type.out.Core100002Out"
+    }
+  ]
+}

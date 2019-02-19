@@ -1,0 +1,22 @@
+{
+  "head": {
+    "seqNo": "201902180001",
+    "ipAddress": "192.168.0.1",
+    "tranDate": "20190218",
+    "model": "mi-5",
+    "action": "login",
+    "code": "100002"
+  },
+  "body": {
+    "nickname": "一只友人A",
+    "password": "123456",
+    "gender": "M",
+    "birthday": "1990927",
+    "country": "CHN",
+    "state": "61",
+    "city": "612321",
+    "niversity": "西安电子科技大学",
+    "signature": "行车不规范，亲人两行泪！",
+    "image":""
+  }
+}

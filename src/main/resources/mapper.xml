@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的
+例如namespace="me.gacl.mapping.userMapper"就是me.gacl.mapping(包名)+userMapper(userMapper.xml文件去除后缀)
+ -->
+<mapper namespace="com.iweb.dao.namespace">
+    <!-- 在select标签中编写查询的SQL语句， 设置select标签的id属性为getUser，id属性值必须是唯一的，不能够重复
+    使用parameterType属性指明查询时使用的参数类型，resultType属性指明查询返回的结果集类型
+    resultType="me.gacl.domain.User"就表示将查询结果封装成一个User类的对象返回
+    User类就是users表所对应的实体类
+    -->
+    <!--
+        根据id查询得到一个user对象
+     -->
+    <select id="queryByNickname" parameterType="java.lang.String"
+            resultType="com.iweb.dao.entity.UserBaseInfo">
+        select a.*
+        from user_base_info a,user_info_attach b
+        <where>
+            a.uuid = b.uuid
+            <if test="nickname != null">and nickname = #{nickname}</if>
+            <if test="password != null">and password = #{password}</if>
+        </where>
+    </select>
+
+    <select id="queryErrorTimes" parameterType="java.lang.String"
+            resultType="com.iweb.dao.entity.UserInfoAttach">
+        select b.*
+        from user_base_info a,user_info_attach b
+        <where>
+            a.uuid = b.uuid
+            <if test="nickname != null">and nickname = #{nickname}</if>
+            <if test="password != null">and password = #{password}</if>
+        </where>
+    </select>
+
+    <update id="addErrorTimes" parameterType="java.util.Map">
+        update user_info_attach a
+        set pwdErrorTimes = #{pwdErrorTimes}
+        where exists(
+                  select "Y"
+                  from user_base_info b
+                  where a.uuid = b.uuid
+                    and b.nickname = #{nickname}
+                      )
+    </update>
+
+    <insert id="insertUserBaseInfo" parameterType="com.iweb.dao.entity.UserBaseInfo">
+        INSERT INTO user_base_info (uuid, nickname, gender, birthday, country, state, city, niversity, signature)
+        VALUES (#{uuid}, #{nickname}, #{gender}, #{birthday}, #{country}, #{state}, #{city}, #{niversity}, #{signature})
+    </insert>
+
+    <insert id="insertUserInfoAttach" parameterType="com.iweb.dao.entity.UserInfoAttach">
+        INSERT INTO user_info_attach (uuid, registerData, password, pwdErrorTimes, image)
+        VALUES (#{uuid}, #{registerData}, #{password}, #{pwdErrorTimes}, #{image})
+    </insert>
+
+    <insert id="insertIwebLogInfo" parameterType="com.iweb.dao.entity.IWebLogInfo">
+        INSERT INTO iweb_log_info (tranDate,
+                                   reference,
+                                   action,
+                                   code,
+                                   ipAddress,
+                                   time,
+                                   doClass,
+                                   retCode,
+                                   retMessage,
+                                   errorReason,
+                                   reqJson,
+                                   resJson)
+        VALUES (#{tranDate},
+                #{reference},
+                #{action},
+                #{code},
+                #{ipAddress},
+                #{time},
+                #{doClass},
+                #{retCode},
+                #{retMessage},
+                #{errorReason},
+                #{reqJson},
+                #{resJson});
+
+    </insert>
+</mapper>
+
+

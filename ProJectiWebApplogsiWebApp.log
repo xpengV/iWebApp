@@ -1,0 +1,3 @@
+DEBUG main org.junit.Test - This is debug message.
+INFO main org.junit.Test - This is info message.
+ERROR main org.junit.Test - This is error message.

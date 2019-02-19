@@ -1,0 +1,26 @@
+{
+  "head": {
+    "seqNo": "201902180001",
+    "ipAddress": "192.168.0.1",
+    "tranDate": "20190218",
+    "model": "mi-5",
+    "action": "login",
+    "code": "100001"
+  },
+  "body": {
+    "BATCH_DETAIL": [
+      {
+        "OPTIONS": "01",
+        "CLIENT_NO": "99999901"
+      },
+      {
+        "OPTIONS": "01",
+        "CLIENT_NO": "900001"
+      }
+    ],
+    "BRANCH": "900001",
+    "VALUE_DATE": "20280302",
+    "BATCH_DATE": "20280302",
+    "CCY": "CNY"
+  }
+}
